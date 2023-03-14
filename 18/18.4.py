@@ -13,7 +13,7 @@ def guess_the_number():
     print("Welcome to the guess the number game!")
     secret_number = random.randint(1, 100)
     attempts = 0
-    while True:
+    while subscription_process.is_alive():
         guess = int(input("Guess the secret number (between 1 and 100): "))
         attempts += 1
         if guess < secret_number:

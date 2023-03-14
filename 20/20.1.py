@@ -79,12 +79,12 @@ from bs4 import BeautifulSoup
 response = requests.get("https://music.yandex.ru/chart/")
 soup = BeautifulSoup(response.content, "html.parser")
 
-chart_list = soup.find("div", {"class": "chart__list"})
+chart_list = soup.find("div", "chart__list")
 
 chart_data = {}
-for i, chart_item in enumerate(chart_list.find_all("div", {"class": "chart__item"})):
-    artist = chart_item.find("div", {"class": "chart__item-author"}).text.strip()
-    track = chart_item.find("div", {"class": "chart__item-title"}).text.strip()
+for i, chart_item in enumerate(chart_list.find_all("div", "chart__item")):
+    artist = chart_item.find("div", "chart__item-author").text.strip()
+    track = chart_item.find("div", "chart__item-title").text.strip()
     chart_data[i+1] = (artist, track)
 
 with open("yandex_music_chart.json", "w") as f:
